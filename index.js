@@ -17,7 +17,7 @@ app.post("/email", (req, res) => {
 	// const subject = req.body.subject;
 	// const message = req.body.message;
 
-	const { email, subject, message } = req.body;
+	const { email, subject, menessage } = req.body;
 
 	const transporter = nodemailer.createTransport({
 		service: "gmail",
