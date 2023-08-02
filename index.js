@@ -1,15 +1,24 @@
 import express from "express";
 import nodemailer from "nodemailer";
+import cors from "cors";
 
 const EMAIL = "aabdulluhodulate@gmail.com";
 const PASSWORD = "uypinyxxrykumucy";
 const PORT = process.env.port || 5300;
 const app = express();
 app.use(express.json());
+const corsOptions = {
+	origin: ["localhost:3000", ""],
+	origin: true,
+	allowedHeaders: ["Content-Type", "Authorization"],
+	methods: ["GET", "POST", "PUT"],
+	credentials: true,
+};
+app.use(cors(corsOptions));
 
-app.get("/email", (req, res) => {
+app.get("/", (req, res) => {
 	console.log(req.method);
-	res.json("hello blud");
+	res.send("hello blud! put a to request using '/email/' route");
 });
 
 app.post("/email", (req, res) => {
@@ -17,7 +26,7 @@ app.post("/email", (req, res) => {
 	// const subject = req.body.subject;
 	// const message = req.body.message;
 
-	const { email, subject, menessage } = req.body;
+	const { email, subject, message } = req.body;
 
 	const transporter = nodemailer.createTransport({
 		service: "gmail",
