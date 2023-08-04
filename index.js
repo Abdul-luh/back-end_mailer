@@ -2,7 +2,7 @@ import express from "express";
 import nodemailer from "nodemailer";
 import cors from "cors";
 
-const EMAIL = "aabdulluhodulate@gmail.com";
+const EMAIL = "abdulluhodulate@gmail.com";
 const PASSWORD = "uypinyxxrykumucy";
 const PORT = process.env.port || 5300;
 const app = express();
