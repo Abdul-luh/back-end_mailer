@@ -7,12 +7,19 @@ const PASSWORD = "uypinyxxrykumucy";
 const PORT = process.env.port || 5300;
 const app = express();
 app.use(express.json());
+
+const whitelist = [
+	"localhost:3000",
+	"https://incandescent-naiad-f30e25.netlify.app/",
+	"",
+];
+
 const corsOptions = {
-	origin: [
-		"localhost:3000",
-		"https://incandescent-naiad-f30e25.netlify.app/",
-		"",
-	],
+	origin: (origin, callback) => {
+		if (whitelist.indexOf(origin) !== -1 || !origin) {
+			callback(null, true);
+		}
+	},
 	origin: true,
 	allowedHeaders: ["Content-Type", "Authorization"],
 	methods: ["GET", "POST", "PUT"],
@@ -29,7 +36,7 @@ app.get("/email", (req, res) => {
 	res.send("A post request should be made using this route route");
 });
 
-app.post("/email", (req, res) => {
+app.post("/", (req, res) => {
 	// const email = req.body.email;
 	// const subject = req.body.subject;
 	// const message = req.body.message;
