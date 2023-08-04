@@ -59,7 +59,7 @@ app.post("/", (req, res) => {
 	console.log(email, subject, message);
 
 	if (!email && !subject && !message)
-		return res.status(400).json("non available");
+		return res.status(400).json("Please fill out inputs all");
 
 	const mailOption = {
 		from: email,
@@ -74,7 +74,7 @@ app.post("/", (req, res) => {
 			return res.status(401).json(err);
 		}
 		console.log(info.response);
-		res.json("response");
+		res.send("message sent");
 	});
 	// res.json("email sent");
 	console.log(req.method);
