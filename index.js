@@ -24,6 +24,10 @@ app.get("/", (req, res) => {
 	console.log(req.method);
 	res.send("hello blud! put a to request using '/email/' route");
 });
+app.get("/email", (req, res) => {
+	console.log(req.method);
+	res.send("A post request should be made using this route route");
+});
 
 app.post("/email", (req, res) => {
 	// const email = req.body.email;
