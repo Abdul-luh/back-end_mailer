@@ -8,7 +8,11 @@ const PORT = process.env.port || 5300;
 const app = express();
 app.use(express.json());
 const corsOptions = {
-	origin: ["localhost:3000", ""],
+	origin: [
+		"localhost:3000",
+		"https://incandescent-naiad-f30e25.netlify.app/",
+		"",
+	],
 	origin: true,
 	allowedHeaders: ["Content-Type", "Authorization"],
 	methods: ["GET", "POST", "PUT"],
