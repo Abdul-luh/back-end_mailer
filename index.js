@@ -16,16 +16,21 @@ const whitelist = [
 
 const corsOptions = {
 	origin: (origin, callback) => {
-		if (whitelist.indexOf(origin) !== -1 || !origin) {
-			callback(null, true);
-		}
+		callback(null, true);
+		// if (whitelist.indexOf(origin) !== -1 || !origin) {
+		// }
 	},
-	origin: true,
 	allowedHeaders: ["Content-Type", "Authorization"],
 	methods: ["GET", "POST", "PUT"],
 	credentials: true,
 };
 app.use(cors(corsOptions));
+
+const bypassAuthorization = (req, res, next) => {
+	// Bypass the authorization check by setting a flag in the request object
+	req.isAuthorized = true;
+	next();
+};
 
 app.get("/", (req, res) => {
 	console.log(req.method);
